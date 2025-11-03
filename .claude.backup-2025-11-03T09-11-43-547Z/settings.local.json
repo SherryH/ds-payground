@@ -6,8 +6,7 @@
       "Bash(nvm use:*)",
       "Bash(npm --version:*)",
       "Bash(npm config:*)",
-      "Bash(npm install:*)",
-      "Bash(claude-code-spec-workflow:*)"
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []

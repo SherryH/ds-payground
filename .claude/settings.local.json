@@ -7,7 +7,9 @@
       "Bash(npm --version:*)",
       "Bash(npm config:*)",
       "Bash(npm install:*)",
-      "Bash(claude-code-spec-workflow:*)"
+      "Bash(claude-code-spec-workflow:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run type-check:*)"
     ],
     "deny": [],
     "ask": []

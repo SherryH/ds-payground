@@ -34,4 +34,6 @@ export interface LanguageProviderProps {
   defaultLang?: Language
   /** Child components that will have access to the language context */
   children: React.ReactNode
+  /** Optional callback invoked when the language changes */
+  onChange?: (lang: Language) => void
 }

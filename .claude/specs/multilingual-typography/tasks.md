@@ -60,7 +60,7 @@ Public API exports and comprehensive testing suite.
   _Requirements: FR-1.2, NFR-6.1, NFR-6.2, NFR-7.2, NFR-7.4_
   _Leverage: TypeScript patterns from existing project_
 
-- [ ] **2. Create language context**
+- [x] **2. Create language context**
 
   **Files**: `src/lib/i18n/LanguageContext.tsx` (create new)
 
@@ -75,7 +75,7 @@ Public API exports and comprehensive testing suite.
   _Requirements: FR-1.1, FR-1.5, NFR-7.1_
   _Leverage: React Context API patterns_
 
-- [ ] **3. Implement useLanguage hook**
+- [x] **3. Implement useLanguage hook**
 
   **Files**: `src/lib/i18n/useLanguage.ts` (create new)
 

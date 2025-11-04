@@ -12,3 +12,6 @@ export { cn } from './lib/utils'
 
 // Export i18n types and constants
 export { SUPPORTED_LANGUAGES, type Language, type LanguageContextValue, type LanguageProviderProps } from './lib/i18n/types'
+
+// Export i18n hooks
+export { useLanguage } from './lib/i18n/useLanguage'

@@ -1,0 +1,39 @@
+/* Web Font Loading for Multilingual Typography - Uses font-display: swap for optimal performance */
+
+/* === Japanese Font (Noto Sans JP) === */
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../fonts/NotoSansJP-Regular-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('../fonts/NotoSansJP-Bold-subset.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF00-FFEF;
+}
+
+/* === Traditional Chinese Font (Noto Sans TC) === */
+@font-face {
+  font-family: 'Noto Sans TC';
+  src: url('../fonts/NotoSansTC-Regular-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'Noto Sans TC';
+  src: url('../fonts/NotoSansTC-Bold-subset.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3000-303F, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}

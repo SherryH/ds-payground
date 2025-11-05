@@ -25,8 +25,13 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
+    /* === Language-Specific Font Families === */
+    --font-en: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-ja: 'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'YuGothic', 'Noto Sans JP', sans-serif;
+    --font-zh-tw: 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
+
     /* Font Families */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-sans: var(--font-en);
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     /* Shadcn Color Variables - Light Mode */
@@ -50,6 +55,19 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+  }
+
+  /* Language-specific font switching via lang attribute */
+  [lang="en"] {
+    --font-sans: var(--font-en);
+  }
+
+  [lang="ja"] {
+    --font-sans: var(--font-ja);
+  }
+
+  [lang="zh-TW"] {
+    --font-sans: var(--font-zh-tw);
   }
 
   .dark {

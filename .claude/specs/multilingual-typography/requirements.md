@@ -130,9 +130,9 @@ This feature transforms the design system from English-only to genuinely interna
 ### FR-2: LanguageProvider Component
 - **FR-2.1**: Accept props: `children`, `defaultLang`, `onChange`
 - **FR-2.2**: Render wrapper `<div>` with `lang={currentLang}` attribute
-- **FR-2.3**: Apply CSS class `lang-${currentLang}` for styling
-- **FR-2.4**: Invoke `onChange(newLang)` callback when language changes
-- **FR-2.5**: No hydration errors in SSR environments (Next.js, Remix)
+- ~~**FR-2.3**: Apply CSS class `lang-${currentLang}` for styling~~ [REMOVED - Not needed, attribute selector is sufficient]
+- **FR-2.3**: Invoke `onChange(newLang)` callback when language changes
+- **FR-2.4**: No hydration errors in SSR environments (Next.js, Remix)
 
 ### FR-3: CSS Font Stack Configuration
 - **FR-3.1**: Define CSS custom properties in `tokens.css`:

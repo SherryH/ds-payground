@@ -17,10 +17,14 @@ const LANGUAGE_NAMES: Record<Language, string> = {
  *
  * This component:
  * - Manages the current language state
- * - Applies the `lang` attribute to the wrapper div for HTML semantics
- * - Applies a CSS class `lang-{code}` for styling hooks
+ * - Applies the `lang` attribute to the wrapper div for HTML semantics and CSS targeting
  * - Provides an ARIA live region for screen reader announcements
  * - Is SSR-safe with no hydration errors
+ *
+ * The `lang` attribute enables:
+ * - Semantic HTML for screen readers
+ * - CSS attribute selectors: `[lang="ja"] { ... }`
+ * - Tailwind language variants: `lang-ja:text-lg` (when Tailwind plugin is configured)
  *
  * @example
  * ```tsx
@@ -73,7 +77,7 @@ export function LanguageProvider({
 
   return (
     <LanguageContext.Provider value={value}>
-      <div lang={lang} className={`lang-${lang}`}>
+      <div lang={lang}>
         {/* ARIA live region for screen reader language change announcements */}
         <div
           role="status"

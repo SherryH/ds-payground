@@ -22,7 +22,8 @@
       "Bash(while read f)",
       "Bash(do unlink:*)",
       "Bash(done)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(npm run build-storybook:*)"
     ],
     "deny": [],
     "ask": []

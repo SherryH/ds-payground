@@ -337,7 +337,7 @@ Public API exports and comprehensive testing suite.
   _Requirements: FR-9.1, FR-9.2, FR-9.3, US-7, NFR-6.4_
   _Leverage: Existing Storybook patterns from `Heading.stories.tsx`, `Text.stories.tsx`_
 
-- [ ] **18. Create Traditional Chinese typography demo story**
+- [x] **18. Create Traditional Chinese typography demo story**
 
   **Files**: `src/components/typography/Multilingual/TraditionalChinese.stories.tsx` (create new)
 

@@ -192,7 +192,7 @@ Public API exports and comprehensive testing suite.
   _Requirements: FR-3.1, FR-3.2, FR-3.3, FR-3.4, FR-3.5, US-5, TC-1.2, TC-4.1, NFR-7.3_
   _Leverage: Existing CSS custom properties pattern in `tokens.css`_
 
-- [ ] **11. Add language-specific line-height variables to tokens.css**
+- [x] **11. Add language-specific line-height variables to tokens.css**
 
   **Files**: `src/styles/tokens.css` (modify existing)
 

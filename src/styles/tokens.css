@@ -19,6 +19,12 @@
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.75;
 
+    /* === Language-Specific Line Heights === */
+    --line-height-en: 1.5;
+    --line-height-ja: 1.8;
+    --line-height-zh-tw: 1.8;
+    --line-height-base: var(--line-height-en);
+
     /* Font Weights */
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -60,14 +66,17 @@
   /* Language-specific font switching via lang attribute */
   [lang="en"] {
     --font-sans: var(--font-en);
+    --line-height-base: var(--line-height-en);
   }
 
   [lang="ja"] {
     --font-sans: var(--font-ja);
+    --line-height-base: var(--line-height-ja);
   }
 
   [lang="zh-TW"] {
     --font-sans: var(--font-zh-tw);
+    --line-height-base: var(--line-height-zh-tw);
   }
 
   .dark {

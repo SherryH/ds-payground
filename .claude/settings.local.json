@@ -10,7 +10,8 @@
       "Bash(claude-code-spec-workflow:*)",
       "Bash(npx tsc:*)",
       "Bash(npm run type-check:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npx claude-code-spec-workflow get-tasks:*)"
     ],
     "deny": [],
     "ask": []

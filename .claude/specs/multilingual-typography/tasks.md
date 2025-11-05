@@ -267,7 +267,7 @@ Public API exports and comprehensive testing suite.
 
   **Note**: Manual subsetting process documented for MVP. Automation deferred to future enhancement.
 
-- [ ] **15. Download and subset Noto Sans TC fonts**
+- [x] **15. Download and subset Noto Sans TC fonts**
 
   **Files**: `src/fonts/` directory, font files (download and process)
 

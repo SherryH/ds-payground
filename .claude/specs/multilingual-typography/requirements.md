@@ -59,16 +59,14 @@ This feature transforms the design system from English-only to genuinely interna
 - AND the change happens without layout shift (font-display: swap)
 - AND screen readers are notified via `lang` attribute update
 
-### US-4: Component-Level Language Override
-**As a** developer
-**I want** to override language at the component level
-**So that** I can mix multiple languages on the same page
+### ~~US-4: Component-Level Language Override~~ [OUT OF SCOPE]
+**Status**: Deferred to future release
 
-**Acceptance Criteria:**
-- WHEN consumer sets `<Heading lang="en">Hello</Heading>` inside Japanese provider
-- THEN that specific heading uses English fonts
-- AND other components continue using Japanese fonts from provider
-- AND the `lang` attribute is properly set on the component's DOM element
+**Rationale**: Component-level language overrides add complexity and redundant HTML attributes. The `lang` attribute from `LanguageProvider` is sufficient for CSS inheritance. This feature will be added only if specific use cases emerge requiring mixed languages on the same page.
+
+**Original Requirement** (for reference):
+- ~~Allow `<Heading lang="en">` prop to override context language~~
+- ~~Individual components can use different languages on same page~~
 
 ### US-5: System Fonts with Noto Fallback
 **As a** design system consumer
@@ -160,11 +158,11 @@ This feature transforms the design system from English-only to genuinely interna
 - **FR-5.5**: Configure Vite to copy font files to dist
 
 ### FR-6: Typography Component Integration
-- **FR-6.1**: Update `Heading` component to consume `useLanguage()` hook
-- **FR-6.2**: Add optional `lang` prop to `Heading` for component-level override
-- **FR-6.3**: Apply `lang` attribute to rendered HTML element
-- **FR-6.4**: Repeat FR-6.1 to FR-6.3 for `Text` component
-- **FR-6.5**: Repeat FR-6.1 to FR-6.3 for `Paragraph` component
+- **FR-6.1**: Typography components inherit language from `LanguageProvider` via CSS
+- ~~**FR-6.2**: Add optional `lang` prop to components for component-level override~~ [OUT OF SCOPE]
+- ~~**FR-6.3**: Apply `lang` attribute to rendered HTML element~~ [OUT OF SCOPE - Handled by LanguageProvider wrapper]
+- **FR-6.2**: Typography components work without explicit language detection (CSS inheritance sufficient)
+- **FR-6.3**: Components remain unchanged - no need to import `useLanguage()` hook
 
 ### FR-7: Language-Specific Typography Adjustments
 - **FR-7.1**: Add CSS custom properties for line-height:
@@ -223,7 +221,7 @@ This feature transforms the design system from English-only to genuinely interna
 - **NFR-2.4**: Server and client render identical HTML for same props
 
 ### NFR-3: Accessibility
-- **NFR-3.1**: `lang` attribute present on all typography components
+- **NFR-3.1**: `lang` attribute present on `LanguageProvider` wrapper (inherited by typography components)
 - **NFR-3.2**: Screen readers correctly identify language for pronunciation
 - **NFR-3.3**: Language changes announced to screen readers
 - **NFR-3.4**: Keyboard navigation works with language switcher
@@ -282,19 +280,28 @@ This feature transforms the design system from English-only to genuinely interna
 
 ## 5. Out of Scope (Future Considerations)
 
-### OS-1: Additional Languages
+### OS-1: Component-Level Language Override
+**Status**: Deferred to future release
+- Add optional `lang` prop to individual typography components
+- Allow mixing multiple languages on the same page
+- Component-level `lang` attribute override
+- Development warnings for components used outside provider
+
+**Rationale**: Not needed for initial release. CSS inheritance from `LanguageProvider` wrapper is sufficient. Will add if specific use cases emerge.
+
+### OS-2: Additional Languages
 - Korean, Simplified Chinese (future languages)
 - RTL languages (Arabic, Hebrew)
 
-### OS-2: Font Weight Variations
+### OS-3: Font Weight Variations
 - Language-specific font weight mappings
 - Variable font support
 
-### OS-3: Font Subsetting Automation
+### OS-4: Font Subsetting Automation
 - CLI tool for automatic font subsetting
 - Dynamic font loading based on page content
 
-### OS-4: Advanced Features
+### OS-5: Advanced Features
 - Automatic language detection from browser settings
 - Font loading performance metrics
 - A/B testing different font stacks
@@ -308,9 +315,9 @@ This feature transforms the design system from English-only to genuinely interna
 - ✅ `useLanguage()` hook for language state management
 - ✅ CSS custom properties for font-family switching
 - ✅ System fonts with Noto fallback bundled
-- ✅ Typography components auto-detect language context
-- ✅ Component-level `lang` prop override
-- ✅ Development mode warnings for missing provider
+- ✅ Typography components inherit language via CSS (no component changes needed)
+- ~~✅ Component-level `lang` prop override~~ [OUT OF SCOPE - Deferred]
+- ~~✅ Development mode warnings for missing provider~~ [OUT OF SCOPE - Not needed without component integration]
 - ✅ SSR-safe implementation (no hydration errors)
 - ✅ Storybook demos for all three languages
 - ✅ Language switcher demo story
@@ -351,7 +358,7 @@ This feature transforms the design system from English-only to genuinely interna
 
 ### Testing Requirements
 - **Unit Tests**: Context provider state management, hook behavior, language switching logic
-- **Integration Tests**: Typography component language detection, font-family application, component-level overrides
+- **Integration Tests**: CSS font-family application via `lang` attribute, font inheritance in typography components
 - **SSR Tests**: Next.js App Router hydration, Next.js Pages Router hydration, Remix SSR validation
 - **Visual Regression**: Storybook Chromatic snapshots for each language (Japanese, Traditional Chinese, English)
 - **Accessibility Tests**: NVDA screen reader language announcement, JAWS pronunciation validation, keyboard navigation in language switcher

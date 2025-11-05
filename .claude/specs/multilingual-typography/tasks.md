@@ -146,61 +146,27 @@ Public API exports and comprehensive testing suite.
 
 ---
 
-### Phase 2: Typography Component Integration
+### Phase 2: Typography Component Integration [DEFERRED - OUT OF SCOPE]
 
-- [ ] **7. Add multilingual support to Heading component**
+**Status**: Phase 2 deferred to future release per requirement updates (FR-6, US-4, OS-1).
 
-  **Files**: `src/components/typography/Heading.tsx` (modify existing)
+**Rationale**: Typography components inherit language from `LanguageProvider` via CSS custom properties. Component-level language detection and `lang` attribute application are not needed for initial release. This simplifies implementation and reduces HTML redundancy while maintaining all functionality.
 
-  **Implementation**:
-  - Import `useLanguage` from `@/lib/i18n`
-  - Import `Language` type from `@/lib/i18n`
-  - Add optional `lang?: Language` prop to `HeadingProps` interface with JSDoc example showing component-level override
-  - In component body, call `const { lang: contextLang } = useLanguage()`
-  - Calculate effective language: `const effectiveLang = langProp || contextLang`
-  - Add `lang={effectiveLang}` attribute to `<Component>` element
-  - Ensure no breaking changes: existing props and behavior unchanged
+**Original Tasks** (for reference):
+- ~~**7. Add multilingual support to Heading component**~~ [OUT OF SCOPE]
+- ~~**8. Add multilingual support to Text component**~~ [OUT OF SCOPE]
+- ~~**9. Add multilingual support to Paragraph component**~~ [OUT OF SCOPE]
 
-  **Purpose**: Enable Heading component to automatically use language context with optional component-level override
+**Implementation Changes**:
+- Typography components remain unchanged - no imports of `useLanguage` hook
+- No `lang` prop added to component interfaces
+- No `lang` attribute applied to rendered elements
+- CSS inheritance from `LanguageProvider` wrapper handles all font switching
 
-  _Requirements: FR-6.1, FR-6.2, FR-6.3, US-1, US-2, US-4, TC-4.1, TC-4.2, NFR-3.1_
-  _Leverage: Existing `Heading.tsx` CVA pattern, props spreading pattern_
-
-- [ ] **8. Add multilingual support to Text component**
-
-  **Files**: `src/components/typography/Text.tsx` (modify existing)
-
-  **Implementation**:
-  - Import `useLanguage` from `@/lib/i18n`
-  - Import `Language` type from `@/lib/i18n`
-  - Add optional `lang?: Language` prop to `TextProps` interface with JSDoc example
-  - In component body, call `const { lang: contextLang } = useLanguage()`
-  - Calculate effective language: `const effectiveLang = lang || contextLang`
-  - Add `lang={effectiveLang}` attribute to `<Component>` element
-  - Ensure no breaking changes: existing props and behavior unchanged
-
-  **Purpose**: Enable Text component to automatically use language context with optional component-level override
-
-  _Requirements: FR-6.4, US-1, US-2, US-4, TC-4.1, TC-4.2, NFR-3.1_
-  _Leverage: Existing `Text.tsx` CVA pattern, props spreading pattern_
-
-- [ ] **9. Add multilingual support to Paragraph component**
-
-  **Files**: `src/components/typography/Paragraph.tsx` (modify existing)
-
-  **Implementation**:
-  - Import `useLanguage` from `@/lib/i18n`
-  - Import `Language` type from `@/lib/i18n`
-  - Add optional `lang?: Language` prop to `ParagraphProps` interface with JSDoc example
-  - In component body, call `const { lang: contextLang } = useLanguage()`
-  - Calculate effective language: `const effectiveLang = lang || contextLang`
-  - Add `lang={effectiveLang}` attribute to paragraph element
-  - Ensure no breaking changes: existing props and behavior unchanged
-
-  **Purpose**: Enable Paragraph component to automatically use language context with optional component-level override
-
-  _Requirements: FR-6.5, US-1, US-2, US-4, TC-4.1, TC-4.2, NFR-3.1_
-  _Leverage: Existing `Paragraph.tsx` CVA pattern, props spreading pattern_
+**When to Revisit**: If specific use cases emerge requiring:
+- Mixed languages on the same page
+- Component-level language overrides
+- Individual component lang attributes
 
 ---
 
@@ -434,24 +400,13 @@ Public API exports and comprehensive testing suite.
 
   **Note**: Shadcn Dropdown (FR-9.7) deferred to P1 enhancement. Using simple button group for MVP.
 
-- [ ] **21. Create Component-Level Override demo story**
+- [ ] ~~**21. Create Component-Level Override demo story**~~ [OUT OF SCOPE]
 
-  **Files**: `src/components/typography/Multilingual/ComponentOverride.stories.tsx` (create new)
+  **Status**: Deferred to future release (component-level overrides not in scope)
 
-  **Implementation**:
-  - Import Storybook types, `LanguageProvider`, typography components
-  - Define meta: `title: 'Typography/Multilingual/Component Override'`, `parameters: { layout: 'padded' }`
-  - Create `MixedLanguages` story:
-    - Wrap in `<LanguageProvider defaultLang="ja">`
-    - Render Japanese content: `<Heading level="h1">日本語のタイトル</Heading>`, `<Paragraph>これは日本語の段落です。</Paragraph>`
-    - Render English override section: `<Heading level="h2" lang="en">English Section</Heading>`, `<Paragraph lang="en">This paragraph is in English.</Paragraph>`
-    - Render Traditional Chinese override: `<Heading level="h3" lang="zh-TW">繁體中文部分</Heading>`, `<Paragraph lang="zh-TW">這是繁體中文段落。</Paragraph>`
-  - Add story description explaining component-level language override capability
+  **Original Purpose**: Demonstrate component-level lang prop override for mixing multiple languages on same page
 
-  **Purpose**: Demonstrate component-level lang prop override for mixing multiple languages on same page
-
-  _Requirements: US-4, NFR-6.4_
-  _Leverage: Component lang prop, existing Storybook patterns_
+  _Original Requirements: US-4 (out of scope), NFR-6.4_
 
 ---
 
@@ -512,24 +467,21 @@ Public API exports and comprehensive testing suite.
   _Requirements: FR-1.1, FR-1.3, FR-1.4, FR-1.5, FR-2.1, FR-2.2, FR-2.3, FR-2.4, FR-8.1, FR-8.2, FR-8.4_
   _Leverage: React Testing Library, existing test patterns_
 
-- [ ] **25. Write integration tests for typography components**
+- [ ] **25. Write integration tests for CSS font inheritance**
 
   **Files**: `src/components/typography/__tests__/multilingual-integration.test.tsx` (create new)
 
   **Implementation**:
   - Setup: Import testing utilities, `LanguageProvider`, `Heading`, `Text`, `Paragraph`
-  - Test: "Heading uses Japanese fonts when provider lang is ja" - render Heading in LanguageProvider with ja, expect lang="ja" attribute
-  - Test: "Text uses context language" - render Text in LanguageProvider with zh-TW, expect lang="zh-TW"
-  - Test: "Paragraph uses context language" - similar test for Paragraph
-  - Test: "Heading uses component-level lang override" - render Heading with lang="en" inside ja provider, expect lang="en"
-  - Test: "Text component-level override" - similar override test for Text
-  - Test: "Paragraph component-level override" - similar override test for Paragraph
-  - Test: "Components work without LanguageProvider (fallback to en)" - render Heading standalone, expect lang="en"
+  - Test: "Typography components inherit fonts from LanguageProvider (ja)" - render typography components in LanguageProvider with ja, verify wrapper has lang="ja", verify CSS inheritance
+  - Test: "Typography components inherit fonts from LanguageProvider (zh-TW)" - similar test for Traditional Chinese
+  - Test: "Typography components work without LanguageProvider" - render components standalone, expect default English fonts via CSS
   - Test: "No hydration errors with SSR" - use `renderToString` + `hydrateRoot`, expect no throw
+  - Test: "LanguageProvider wrapper has correct lang attribute" - verify wrapper div has lang attribute matching current language
 
-  **Purpose**: Verify typography components correctly integrate with language context and handle overrides
+  **Purpose**: Verify typography components correctly inherit language-specific fonts via CSS from LanguageProvider wrapper
 
-  _Requirements: FR-6.1, FR-6.2, FR-6.3, FR-6.4, FR-6.5, US-1, US-2, US-4, NFR-2.1, NFR-2.4, TC-4.1_
+  _Requirements: FR-6.1, FR-6.2, FR-6.3, US-1, US-2, NFR-2.1, NFR-2.4, TC-4.1_
   _Leverage: React Testing Library, SSR testing utilities_
 
 - [ ] **26. Write CSS font switching tests**

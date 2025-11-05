@@ -1,6 +1,8 @@
 // Import styles
 import './styles/globals.css'
 import './styles/tokens.css'
+// Web font definitions for multilingual typography
+import './styles/fonts.css'
 
 // Export typography components
 export { Heading, type HeadingProps } from './components/typography/Heading'
